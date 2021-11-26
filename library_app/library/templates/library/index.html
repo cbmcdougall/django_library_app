@@ -1,0 +1,33 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+    <h1>Welcome to the Library!</h1>
+    <div id="library-container">
+        <div class="split-left">
+            <p>Here are all our books!</p>
+            <ul id="books-container">
+                {% for book in books %}
+                <li>
+                    <a href="{% url 'book-show' book_id=book.id %}">
+                        {{ book.title }}
+                    </a>
+                    <span class="helptext">({{ book.author }})</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'book-create' %}"> <button>Add new book</button></a>
+        </div>
+        <div class="split-right">
+            <p>Or browse by author!</p>
+            <ul id="authors-container">
+                {% for author in authors %}
+                <li>
+                    <a href="{% url 'author-show' author_id=author.id %}">
+                        {{ author.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock content %}

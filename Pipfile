@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+
+[dev-packages]
+coverage = "*"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+coverage = "coverage run --source='.' manage.py test"
+coverage_report = "coverage report -m"

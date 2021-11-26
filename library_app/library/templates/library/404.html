@@ -1,0 +1,12 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+    {% if no_book %}
+        <h1>Sorry, we couldn't find that book!</h1>
+    {% elif no_author %}
+        <h1>Sorry, we couldn't find that author!</h1>
+    {% else %}
+        <h1>This is not the page you are looking for...</h1>
+    {% endif %}
+    <p>Let's go <a href="{% url 'library-index' %}">Home</a></p>
+{% endblock content %}

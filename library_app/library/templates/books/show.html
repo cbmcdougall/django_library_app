@@ -1,0 +1,22 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    <p>
+        Author: <a href="{% url 'author-show' author_id=author.id %}">
+            {{ author.name }}
+        </a>
+    </p>
+    <P>Availability: {{ book.borrower|yesno:"On Loan,Available"}}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if book.borrower == user %}
+            <input type="submit" value="Return Book">
+        {% elif book.borrower %}
+            <input type="submit" value="Borrow Book" disabled>
+        {% else %}
+            <input type="submit" value="Borrow Book">
+        {% endif %}
+    </form>
+{% endblock content %}
